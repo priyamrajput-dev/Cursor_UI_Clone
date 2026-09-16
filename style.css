@@ -41,6 +41,10 @@
       opacity: 0.8;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     .nav-btn {
       display: flex;
       gap: 12px;
@@ -50,15 +54,33 @@
       padding: 8px 18px;
       background: transparent;
       color: #edecec;
-      border: 1px solid #edecec;
+      border: 1px solid rgba(237, 236, 236, 0.4);
       border-radius: 50px;
       cursor: pointer;
+      font-weight: 500;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .nav-btn button:hover {
+      border-color: #edecec;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .nav-btn button:active {
+      transform: scale(0.97);
     }
 
     .nav-btn button:last-child {
       background: #edecec;
       color: #14120b;
-      border: none;
+      border: 1px solid #edecec;
+      font-weight: 600;
+    }
+
+    .nav-btn button:last-child:hover {
+      background: #ffffff;
+      box-shadow: 0 4px 16px rgba(237, 236, 236, 0.2);
     }
 
     /* ================= HERO ================= */
@@ -79,8 +101,22 @@
       padding: 12px 28px;
       border-radius: 50px;
       font-size: 15px;
+      font-weight: 600;
       border: none;
       cursor: pointer;
+      background: #edecec;
+      color: #14120b;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .hero-sec button:hover {
+      background: #ffffff;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(237, 236, 236, 0.25);
+    }
+
+    .hero-sec button:active {
+      transform: scale(0.98);
     }
 
     /* ================= IMAGE + OVERLAY ================= */
