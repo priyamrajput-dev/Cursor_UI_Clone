@@ -1,195 +1,341 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="dark">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Cursor - The AI Code Editor built to make you extraordinarily productive." />
-  <title>Cursor</title>
-  <link rel="Stylesheet" href="style.css" />
+  <title>Cursor — The AI Code Editor</title>
+  <link rel="icon" type="image/png" href="https://cursor.com/marketing-static/icon-192x192.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
   <script defer src="script.js"></script>
 </head>
 
 <body>
+  <!-- Ambient background glow effect -->
+  <div class="ambient-glow" aria-hidden="true"></div>
+
   <header>
     <nav class="nav" aria-label="Main Navigation">
-      <a href="/">
-        <img src="https://cursor.com/marketing-static/icon-192x192.png" alt="logo" />
-        CURSOR
+      <a href="/" class="brand-logo">
+        <img src="https://cursor.com/marketing-static/icon-192x192.png" alt="Cursor Logo" width="32" height="32" />
+        <span>CURSOR</span>
       </a>
 
-      <ul class="nav-links">
-        <li>Product</li>
-        <li>Enterprise</li>
-        <li>Pricing</li>
-        <li>Resources</li>
+      <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle navigation menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#features">Product</a></li>
+        <li><a href="#trusted">Enterprise</a></li>
+        <li><a href="#testimonials">Pricing</a></li>
+        <li><a href="#research">Resources</a></li>
       </ul>
 
       <div class="nav-btn">
-        <button>Sign in</button>
-        <button>Download</button>
+        <button class="btn-ghost">Sign in</button>
+        <button class="btn-primary">Download</button>
       </div>
     </nav>
   </header>
 
   <main id="hero">
+    <!-- HERO SECTION -->
     <section class="hero-sec">
+      <div class="announcement-pill">
+        <span class="badge">New</span>
+        <span>Cursor 2.0 with Full Codebase Awareness</span>
+        <span class="arrow">→</span>
+      </div>
+
       <h1>
-        Built to make you extraordinarily productive, Cursor is the best way
-        to code with AI.
+        Built to make you extraordinarily productive, Cursor is the best way to code with AI.
       </h1>
-      <button>Download for MacOS</button>
+
+      <p class="hero-subtitle">
+        An intelligent, proactive code editor designed for pair-programming at lightspeed.
+      </p>
+
+      <div class="hero-cta-group">
+        <button class="hero-download-btn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.61-.75 1.04-1.8 0.92-2.85-.92.04-2.06.62-2.71 1.37-.57.65-1.06 1.71-.93 2.74 1.03.08 2.1-.51 2.72-1.26z"/>
+          </svg>
+          Download for macOS
+        </button>
+        <a href="#features" class="hero-secondary-btn">See how it works</a>
+      </div>
+
+      <div class="hero-subtext">
+        <span>Available for macOS, Windows & Linux</span>
+        <span class="dot-separator">•</span>
+        <span>Free tier available</span>
+      </div>
     </section>
 
-    <section class="box1">
-      <img src="https://ptht05hbb1ssoooe.public.blob.vercel-storage.com/assets/misc/asset-cc24ca462279ca23250c.jpg"
-        alt="preview" />
-
-      <div class="box1-content">
-        <div class="topbar">
-          <div class="circles">
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-          <p>Cursor</p>
-          <p>Get Cursor …</p>
-        </div>
-
-        <div class="content-area">
-
-          <!-- LEFT SIDEBAR -->
-          <div class="sidebar">
-            <p class="sidebar-title">READY FOR REVIEW 6</p>
-
-            <ul class="task-list">
-              <li class="active">
-                <div>
-                  <p>Build Landing Page</p>
-                  <span>Done. Fonts preload in the head...</span>
-                </div>
-                <small>now</small>
-              </li>
-
-              <li>
-                <div>
-                  <p>Analyze Tab vs Agent</p>
-                  <span>All set! We now track focus...</span>
-                </div>
-                <small>now</small>
-              </li>
-
-              <li>
-                <div>
-                  <p>Plan Mission Control</p>
-                  <span><span class="green">+20</span> <span class="red">-3</span></span>
-                </div>
-                <small>now</small>
-              </li>
-
-              <li>
-                <div>
-                  <p>PyTorch MNIST Experiments</p>
-                </div>
-                <small>10m</small>
-              </li>
-
-              <li>
-                <div>
-                  <p>Bioinformatics Tools</p>
-                  <span><span class="green">+135</span> <span class="red">-21</span></span>
-                </div>
-                <small>45m</small>
-              </li>
-            </ul>
-          </div>
-
-          <!-- CENTER EDITOR -->
-          <div class="editor">
-            <h3>Build Landing Page</h3>
-
-            <div class="editor-box">
-              make a landing page based on attached docs explaining what we do
+    <!-- INTERACTIVE UI MOCKUP -->
+    <section class="box1" id="features">
+      <div class="mockup-glow-wrapper">
+        <div class="box1-content">
+          <!-- TOPBAR -->
+          <div class="topbar">
+            <div class="circles">
+              <span class="circle-red" title="Close"></span>
+              <span class="circle-yellow" title="Minimize"></span>
+              <span class="circle-green" title="Expand"></span>
             </div>
-
-            <div class="file-change">
-              <p>app/page.tsx <span class="green">+52</span> <span class="red">-0</span></p>
+            <div class="window-title">
+              <span class="project-tag">cursor-workspace</span>
+              <span class="file-path">app/page.tsx</span>
             </div>
-
-            <div class="file-change">
-              <p>app/globals.css <span class="green">+18</span> <span class="red">-0</span></p>
-            </div>
-
-            <p class="editor-output">
-              Done. Fonts preload in the head, critical CSS is inline, and I added a color-scheme meta tag so dark mode
-              renders instantly without flash.
-            </p>
-
-            <div class="prompt-box">
-              <input placeholder="Plan, search, build anything..." />
-              <button>↑</button>
+            <div class="topbar-actions">
+              <span class="sync-status">
+                <span class="status-dot"></span> Agent Ready
+              </span>
+              <span class="shortcut-pill">⌘K for Cursor</span>
             </div>
           </div>
 
-          <!-- RIGHT PREVIEW -->
-          <div class="preview">
-            <div class="browser-bar">
-              <span>←</span>
-              <span>→</span>
-              <span>⟳</span>
-              <p>http://localhost:3000</p>
-            </div>
+          <!-- MOCKUP CONTENT AREA -->
+          <div class="content-area">
+            <!-- LEFT SIDEBAR -->
+            <aside class="sidebar">
+              <div class="sidebar-header">
+                <span class="sidebar-title">READY FOR REVIEW</span>
+                <span class="review-counter">5</span>
+              </div>
 
-            <div class="preview-content">
-              <h2>Acme Labs</h2>
-              <p>
-                Software creation is changing. We are a group of researchers,
-                engineers, and technologists inventing at the edge of what's useful and possible.
-              </p>
+              <ul class="task-list" id="task-list">
+                <li class="active" data-task="landing-page">
+                  <div class="task-info">
+                    <p class="task-name">Build Landing Page</p>
+                    <span class="task-desc">Done. Fonts preload in the head...</span>
+                  </div>
+                  <span class="task-badge badge-now">now</span>
+                </li>
 
-              <button class="preview-btn">See projects</button>
+                <li data-task="tab-vs-agent">
+                  <div class="task-info">
+                    <p class="task-name">Analyze Tab vs Agent</p>
+                    <span class="task-desc">All set! We now track focus...</span>
+                  </div>
+                  <span class="task-badge">now</span>
+                </li>
 
-              <ul class="project-list">
-                <li><span>2026</span> Secure codebase indexing <span>Published</span></li>
-                <li><span>2026</span> Semantic search <span>Published</span></li>
-                <li><span>2025</span> Reinforcement learning <span>Published</span></li>
-                <li><span>2024</span> Multi-agent collaboration <span>Published</span></li>
+                <li data-task="mission-control">
+                  <div class="task-info">
+                    <p class="task-name">Plan Mission Control</p>
+                    <div class="diff-summary">
+                      <span class="diff-green">+20</span>
+                      <span class="diff-red">-3</span>
+                    </div>
+                  </div>
+                  <span class="task-badge">now</span>
+                </li>
+
+                <li data-task="mnist">
+                  <div class="task-info">
+                    <p class="task-name">PyTorch MNIST Experiments</p>
+                    <span class="task-desc">Validation accuracy 99.2%</span>
+                  </div>
+                  <span class="task-badge">10m</span>
+                </li>
+
+                <li data-task="bioinformatics">
+                  <div class="task-info">
+                    <p class="task-name">Bioinformatics Tools</p>
+                    <div class="diff-summary">
+                      <span class="diff-green">+135</span>
+                      <span class="diff-red">-21</span>
+                    </div>
+                  </div>
+                  <span class="task-badge">45m</span>
+                </li>
               </ul>
+            </aside>
+
+            <!-- CENTER EDITOR -->
+            <div class="editor">
+              <div class="editor-header">
+                <div class="editor-title-group">
+                  <h3 id="current-task-title">Build Landing Page</h3>
+                  <span class="editor-badge">Agent Mode</span>
+                </div>
+                <span class="model-tag">claude-3-7-sonnet</span>
+              </div>
+
+              <div class="prompt-bubble">
+                <div class="bubble-header">
+                  <span class="bubble-user">User prompt</span>
+                  <span class="bubble-time">Just now</span>
+                </div>
+                <p>make a landing page based on attached docs explaining what we do</p>
+              </div>
+
+              <div class="file-changes-group">
+                <div class="file-change">
+                  <div class="file-info">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
+                      <polyline points="13 2 13 9 20 9"></polyline>
+                    </svg>
+                    <span>app/page.tsx</span>
+                  </div>
+                  <div class="file-diff">
+                    <span class="diff-green">+52</span>
+                    <span class="diff-red">-0</span>
+                  </div>
+                </div>
+
+                <div class="file-change">
+                  <div class="file-info">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
+                      <polyline points="13 2 13 9 20 9"></polyline>
+                    </svg>
+                    <span>app/globals.css</span>
+                  </div>
+                  <div class="file-diff">
+                    <span class="diff-green">+18</span>
+                    <span class="diff-red">-0</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="editor-output" id="editor-output">
+                <div class="output-icon">✦</div>
+                <p>
+                  Done. Fonts preload in the head, critical CSS is inline, and I added a color-scheme meta tag so dark mode renders instantly without flash.
+                </p>
+              </div>
+
+              <form class="prompt-box" id="prompt-form" onsubmit="return false;">
+                <div class="prompt-icon">✦</div>
+                <input type="text" id="prompt-input" placeholder="Plan, search, build anything... (Press Enter)" />
+                <button type="submit" class="prompt-send-btn" title="Run command">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <line x1="12" y1="19" x2="12" y2="5"></line>
+                    <polyline points="5 12 12 5 19 12"></polyline>
+                  </svg>
+                </button>
+              </form>
+            </div>
+
+            <!-- RIGHT PREVIEW -->
+            <div class="preview">
+              <div class="browser-bar">
+                <div class="browser-nav-btns">
+                  <span>‹</span>
+                  <span>›</span>
+                  <span>⟳</span>
+                </div>
+                <div class="browser-address">
+                  <span class="lock-icon">🔒</span>
+                  <p>localhost:3000</p>
+                </div>
+              </div>
+
+              <div class="preview-content">
+                <div class="preview-hero">
+                  <span class="preview-tag">LABS</span>
+                  <h2>Acme Labs</h2>
+                  <p>
+                    Software creation is changing. We are a group of researchers, engineers, and technologists inventing at the edge of what's possible.
+                  </p>
+                  <button class="preview-btn">See projects →</button>
+                </div>
+
+                <div class="preview-divider"></div>
+
+                <ul class="project-list">
+                  <li>
+                    <div class="project-left">
+                      <span class="project-year">2026</span>
+                      <span class="project-title">Secure codebase indexing</span>
+                    </div>
+                    <span class="project-status">Published</span>
+                  </li>
+                  <li>
+                    <div class="project-left">
+                      <span class="project-year">2026</span>
+                      <span class="project-title">Semantic search</span>
+                    </div>
+                    <span class="project-status">Published</span>
+                  </li>
+                  <li>
+                    <div class="project-left">
+                      <span class="project-year">2025</span>
+                      <span class="project-title">Reinforcement learning</span>
+                    </div>
+                    <span class="project-status">Published</span>
+                  </li>
+                  <li>
+                    <div class="project-left">
+                      <span class="project-year">2024</span>
+                      <span class="project-title">Multi-agent collaboration</span>
+                    </div>
+                    <span class="project-status">Published</span>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
-
-      </div>
       </div>
     </section>
 
-    <!-- Trusted -->
-    <section class="trusted">
+    <!-- TRUSTED BY -->
+    <section class="trusted" id="trusted">
       <h2>Trusted every day by teams that build world-class software</h2>
 
       <div class="logo-grid">
-        <div class="logo-card">Stripe</div>
-        <div class="logo-card">OpenAI</div>
-        <div class="logo-card">Linear</div>
-        <div class="logo-card">Datadog</div>
-        <div class="logo-card">NVIDIA</div>
-        <div class="logo-card">Figma</div>
-        <div class="logo-card">Ramp</div>
-        <div class="logo-card">Adobe</div>
+        <div class="logo-card">
+          <span class="logo-text">Stripe</span>
+        </div>
+        <div class="logo-card">
+          <span class="logo-text">OpenAI</span>
+        </div>
+        <div class="logo-card">
+          <span class="logo-text">Linear</span>
+        </div>
+        <div class="logo-card">
+          <span class="logo-text">Datadog</span>
+        </div>
+        <div class="logo-card">
+          <span class="logo-text">NVIDIA</span>
+        </div>
+        <div class="logo-card">
+          <span class="logo-text">Figma</span>
+        </div>
+        <div class="logo-card">
+          <span class="logo-text">Ramp</span>
+        </div>
+        <div class="logo-card">
+          <span class="logo-text">Adobe</span>
+        </div>
       </div>
     </section>
 
-    <!-- Testimonials -->
-    <section class="testimonials">
-      <h1>The new way to build software.</h1>
+    <!-- TESTIMONIALS -->
+    <section class="testimonials" id="testimonials">
+      <div class="testimonials-header">
+        <span class="section-tag">Testimonials</span>
+        <h1>The new way to build software.</h1>
+        <p class="section-subtitle">Leading engineers and founders build faster and better with Cursor.</p>
+      </div>
 
       <div class="testimonial-grid">
-
         <div class="testimonial-card">
-          <p>“It was night and day from one batch to another, adoption went from single digits to over 80%. It just
-            spread like wildfire.”</p>
+          <div class="card-quote-mark">“</div>
+          <p>It was night and day from one batch to another, adoption went from single digits to over 80%. It just spread like wildfire.</p>
           <div class="author">
-            <img src="https://i.pravatar.cc/100?img=5">
+            <img src="https://i.pravatar.cc/100?img=5" alt="Diana Hu" loading="lazy" />
             <div class="author-info">
               <h4>Diana Hu</h4>
               <span>General Partner, Y Combinator</span>
@@ -197,10 +343,11 @@
           </div>
         </div>
 
-        <div class="testimonial-card">
-          <p>“My favorite enterprise AI service is Cursor. Every one of our engineers is now assisted by AI.”</p>
+        <div class="testimonial-card featured">
+          <div class="card-quote-mark">“</div>
+          <p>My favorite enterprise AI service is Cursor. Every one of our engineers is now assisted by AI.</p>
           <div class="author">
-            <img src="https://i.pravatar.cc/100?img=12">
+            <img src="https://i.pravatar.cc/100?img=12" alt="Jensen Huang" loading="lazy" />
             <div class="author-info">
               <h4>Jensen Huang</h4>
               <span>President & CEO, NVIDIA</span>
@@ -209,9 +356,10 @@
         </div>
 
         <div class="testimonial-card">
-          <p>“The best LLM applications have an autonomy slider. In Cursor, you can control independence.”</p>
+          <div class="card-quote-mark">“</div>
+          <p>The best LLM applications have an autonomy slider. In Cursor, you can control independence seamlessly.</p>
           <div class="author">
-            <img src="https://i.pravatar.cc/100?img=8">
+            <img src="https://i.pravatar.cc/100?img=8" alt="Andrej Karpathy" loading="lazy" />
             <div class="author-info">
               <h4>Andrej Karpathy</h4>
               <span>CEO, Eureka Labs</span>
@@ -220,9 +368,10 @@
         </div>
 
         <div class="testimonial-card">
-          <p>“Cursor quickly grew from hundreds to thousands of extremely enthusiastic Stripe employees.”</p>
+          <div class="card-quote-mark">“</div>
+          <p>Cursor quickly grew from hundreds to thousands of extremely enthusiastic Stripe employees.</p>
           <div class="author">
-            <img src="https://i.pravatar.cc/100?img=15">
+            <img src="https://i.pravatar.cc/100?img=15" alt="Patrick Collison" loading="lazy" />
             <div class="author-info">
               <h4>Patrick Collison</h4>
               <span>Co-Founder & CEO, Stripe</span>
@@ -231,9 +380,10 @@
         </div>
 
         <div class="testimonial-card">
-          <p>“The most useful AI tool I currently pay for is Cursor. Everything is well put together.”</p>
+          <div class="card-quote-mark">“</div>
+          <p>The most useful AI tool I currently pay for is Cursor. Everything is crafted and put together with precision.</p>
           <div class="author">
-            <img src="https://i.pravatar.cc/100?img=20">
+            <img src="https://i.pravatar.cc/100?img=20" alt="shadcn" loading="lazy" />
             <div class="author-info">
               <h4>shadcn</h4>
               <span>Creator of shadcn/ui</span>
@@ -242,104 +392,130 @@
         </div>
 
         <div class="testimonial-card">
-          <p>“It's becoming more fun to be a programmer. Interactive experiences shine brightest.”</p>
+          <div class="card-quote-mark">“</div>
+          <p>It's becoming more fun to be a programmer. Interactive experiences shine brightest with smart AI pair work.</p>
           <div class="author">
-            <img src="https://i.pravatar.cc/100?img=30">
+            <img src="https://i.pravatar.cc/100?img=30" alt="Greg Brockman" loading="lazy" />
             <div class="author-info">
               <h4>Greg Brockman</h4>
               <span>President, OpenAI</span>
             </div>
           </div>
         </div>
-
       </div>
     </section>
 
-    <!-- reasearch section -->
-    <section class="research-section">
+    <!-- RESEARCH SECTION -->
+    <section class="research-section" id="research">
       <div class="research-card">
-
         <div class="research-text">
+          <span class="research-pill">Applied Research</span>
           <h2>
-            Cursor is an applied research team focused on building
-            the future of software development.
+            Cursor is an applied research team focused on building the future of software development.
           </h2>
-          <a href="#">Join us →</a>
+          <p class="research-desc">
+            We are creating model architectures, reasoning systems, and seamless editor workflows designed to elevate human developers.
+          </p>
+          <a href="#" class="research-link">
+            <span>Join our research team</span>
+            <span class="arrow-right">→</span>
+          </a>
         </div>
 
         <div class="research-image">
-          <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72" alt="">
+          <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1200&q=80" alt="Research Team Collaboration" loading="lazy" />
         </div>
-
       </div>
     </section>
+
     <!-- CTA SECTION -->
     <section class="cta-section">
-      <h1>Try Cursor now.</h1>
-      <a href="#" class="cta-button">Download for macOS ↓</a>
+      <div class="cta-content">
+        <span class="cta-pill">Ready to get started?</span>
+        <h1>Try Cursor now.</h1>
+        <p class="cta-sub">Join hundreds of thousands of developers writing better code, faster.</p>
+        <div class="cta-buttons">
+          <a href="#" class="cta-button primary">Download for macOS ↓</a>
+          <a href="#" class="cta-button secondary">Explore Features</a>
+        </div>
+      </div>
     </section>
-
   </main>
 
   <!-- FOOTER -->
   <footer class="footer">
-    <div class="footer-grid">
-
-      <div class="footer-column">
-        <h4>Product</h4>
-        <ul>
-          <li>Agents</li>
-          <li>Enterprise</li>
-          <li>Code Review</li>
-          <li>Tab</li>
-          <li>CLI</li>
-          <li>Cloud Agents</li>
-          <li>Pricing</li>
-        </ul>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <img src="https://cursor.com/marketing-static/icon-192x192.png" alt="Cursor Logo" width="24" height="24" />
+          <span>CURSOR</span>
+        </div>
+        <p class="footer-tagline">The AI Code Editor built for speed, focus, and craft.</p>
+        <div class="system-status">
+          <span class="status-indicator"></span>
+          <span>All systems operational</span>
+        </div>
       </div>
 
-      <div class="footer-column">
-        <h4>Resources</h4>
-        <ul>
-          <li>Download</li>
-          <li>Changelog</li>
-          <li>Docs</li>
-          <li>Forum</li>
-          <li>Status</li>
-        </ul>
-      </div>
+      <div class="footer-grid">
+        <div class="footer-column">
+          <h4>Product</h4>
+          <ul>
+            <li><a href="#">Agents</a></li>
+            <li><a href="#">Enterprise</a></li>
+            <li><a href="#">Code Review</a></li>
+            <li><a href="#">Tab Autocomplete</a></li>
+            <li><a href="#">CLI</a></li>
+            <li><a href="#">Pricing</a></li>
+          </ul>
+        </div>
 
-      <div class="footer-column">
-        <h4>Company</h4>
-        <ul>
-          <li>Careers</li>
-          <li>Blog</li>
-          <li>Community</li>
-          <li>Students</li>
-          <li>Brand</li>
-          <li>Anysphere</li>
-        </ul>
-      </div>
+        <div class="footer-column">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="#">Download</a></li>
+            <li><a href="#">Changelog</a></li>
+            <li><a href="#">Documentation</a></li>
+            <li><a href="#">Forum</a></li>
+            <li><a href="#">Status</a></li>
+          </ul>
+        </div>
 
-      <div class="footer-column">
-        <h4>Legal</h4>
-        <ul>
-          <li>Terms of Service</li>
-          <li>Privacy Policy</li>
-          <li>Data Use</li>
-          <li>Security</li>
-        </ul>
-      </div>
+        <div class="footer-column">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Community</a></li>
+            <li><a href="#">Students</a></li>
+            <li><a href="#">Anysphere</a></li>
+          </ul>
+        </div>
 
-      <div class="footer-column">
-        <h4>Connect</h4>
-        <ul>
-          <li>X</li>
-          <li>LinkedIn</li>
-          <li>YouTube</li>
-        </ul>
-      </div>
+        <div class="footer-column">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Security</a></li>
+          </ul>
+        </div>
 
+        <div class="footer-column">
+          <h4>Connect</h4>
+          <ul>
+            <li><a href="#">X (Twitter)</a></li>
+            <li><a href="#">LinkedIn</a></li>
+            <li><a href="#">GitHub</a></li>
+            <li><a href="#">YouTube</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2026 Cursor (Anysphere, Inc.) • All rights reserved.</p>
+      <p class="footer-attribution">Built with craft and precision.</p>
     </div>
   </footer>
 </body>
