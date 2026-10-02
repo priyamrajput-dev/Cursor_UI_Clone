@@ -18,6 +18,7 @@
   <!-- Ambient background glow effect -->
   <div class="ambient-glow" aria-hidden="true"></div>
 
+  <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
   <header>
     <nav class="nav" aria-label="Main Navigation">
       <a href="/" class="brand-logo">
@@ -39,6 +40,22 @@
       </ul>
 
       <div class="nav-btn">
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme" title="Toggle theme">
+          <svg class="sun-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <svg class="moon-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
         <button class="btn-ghost">Sign in</button>
         <button class="btn-primary">Download</button>
       </div>
@@ -179,7 +196,7 @@
               </div>
 
               <div class="file-changes-group">
-                <div class="file-change">
+                <div class="file-change active" data-file="page" title="Click to view diff">
                   <div class="file-info">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                       <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
@@ -193,7 +210,7 @@
                   </div>
                 </div>
 
-                <div class="file-change">
+                <div class="file-change" data-file="globals" title="Click to view diff">
                   <div class="file-info">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                       <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
@@ -206,6 +223,25 @@
                     <span class="diff-red">-0</span>
                   </div>
                 </div>
+              </div>
+
+              <!-- INTERACTIVE CODE DIFF PREVIEW -->
+              <div class="code-diff-container" id="code-diff-container">
+                <div class="diff-header">
+                  <span class="diff-title" id="diff-title">app/page.tsx (Diff)</span>
+                  <button type="button" class="diff-copy-btn" id="diff-copy-btn" title="Copy code snippet">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                    </svg>
+                    <span>Copy</span>
+                  </button>
+                </div>
+                <pre class="diff-code" id="diff-code"><code><span class="diff-del">- export default function OldHome() {</span>
+<span class="diff-add">+ export default async function Page() {</span>
+<span class="diff-add">+   const session = await auth.getSession();</span>
+<span class="diff-ctx">    return &lt;AcmeLanding session={session} /&gt;;</span>
+<span class="diff-ctx">  }</span></code></pre>
               </div>
 
               <div class="editor-output" id="editor-output">
@@ -225,6 +261,14 @@
                   </svg>
                 </button>
               </form>
+
+              <!-- QUICK PROMPT SUGGESTION CHIPS -->
+              <div class="prompt-chips" id="prompt-chips">
+                <button type="button" class="prompt-chip" data-prompt="Add OAuth authentication with GitHub and Google">⚡ Add Auth</button>
+                <button type="button" class="prompt-chip" data-prompt="Optimize SQL queries with indexes and connection pooling">🚀 Optimize SQL</button>
+                <button type="button" class="prompt-chip" data-prompt="Generate test suite with 100% edge case coverage">🧪 Unit Tests</button>
+                <button type="button" class="prompt-chip" data-prompt="Refactor layout to responsive CSS grid and container queries">🎨 Responsive Grid</button>
+              </div>
             </div>
 
             <!-- RIGHT PREVIEW -->
@@ -518,6 +562,15 @@
       <p class="footer-attribution">Built with craft and precision.</p>
     </div>
   </footer>
+  <!-- Floating Back to Top Button -->
+  <button class="back-to-top" id="back-to-top" aria-label="Back to top" title="Back to top">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M18 15l-6-6-6 6"/>
+    </svg>
+  </button>
+
+  <!-- Interactive Toast Notification -->
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
 </body>
 
 </html>

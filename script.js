@@ -1,32 +1,124 @@
 // ==========================================================
-// Cursor UI Clone - Modern Interactive Controls
+// Cursor UI Clone - Modern Interactive Controls & Theme Engine
 // ==========================================================
 
 document.addEventListener("DOMContentLoaded", () => {
-  // 1. Global quick search shortcut (Cmd+K / Ctrl+K)
-  const promptInput = document.getElementById("prompt-input");
-  const promptForm = document.getElementById("prompt-form");
+  // ----------------------------------------------------------
+  // 1. Toast Notification System
+  // ----------------------------------------------------------
+  const toast = document.getElementById("toast");
+  let toastTimeout = null;
 
-  document.addEventListener("keydown", (e) => {
-    if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
-      e.preventDefault();
-      if (promptInput) {
-        promptInput.focus();
-        promptInput.scrollIntoView({ behavior: "smooth", block: "center" });
-        if (promptForm) {
-          promptForm.style.transition = "box-shadow 0.3s ease, border-color 0.3s ease";
-          promptForm.style.boxShadow = "0 0 0 3px rgba(255, 106, 0, 0.4)";
-          promptForm.style.borderColor = "#ff6a00";
-          setTimeout(() => {
-            promptForm.style.boxShadow = "";
-            promptForm.style.borderColor = "";
-          }, 1200);
-        }
+  function showToast(message) {
+    if (!toast) return;
+    toast.textContent = message;
+    toast.classList.add("show");
+    clearTimeout(toastTimeout);
+    toastTimeout = setTimeout(() => {
+      toast.classList.remove("show");
+    }, 2400);
+  }
+
+  // ----------------------------------------------------------
+  // 2. Theme Engine (Light / Dark Mode with Persistence)
+  // ----------------------------------------------------------
+  const themeToggle = document.getElementById("theme-toggle");
+  
+  function initTheme() {
+    const savedTheme = localStorage.getItem("cursor-theme");
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const isDark = savedTheme === "dark" || (!savedTheme && prefersDark);
+
+    if (isDark) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }
+
+  initTheme();
+
+  if (themeToggle) {
+    themeToggle.addEventListener("click", () => {
+      const isCurrentlyDark = document.documentElement.classList.contains("dark");
+      const nextTheme = isCurrentlyDark ? "light" : "dark";
+      
+      document.documentElement.classList.toggle("dark");
+      localStorage.setItem("cursor-theme", nextTheme);
+      showToast(`Switched to ${nextTheme === "dark" ? "Dark" : "Light"} Mode`);
+    });
+  }
+
+  // ----------------------------------------------------------
+  // 3. Scroll Progress Bar & Floating Back-To-Top
+  // ----------------------------------------------------------
+  const scrollProgress = document.getElementById("scroll-progress");
+  const backToTop = document.getElementById("back-to-top");
+
+  window.addEventListener("scroll", () => {
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+
+    if (scrollProgress) {
+      scrollProgress.style.width = `${scrollPercent}%`;
+    }
+
+    if (backToTop) {
+      if (scrollTop > 380) {
+        backToTop.classList.add("visible");
+      } else {
+        backToTop.classList.remove("visible");
       }
     }
   });
 
-  // 2. Mobile Navigation Toggle
+  if (backToTop) {
+    backToTop.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  }
+
+  // ----------------------------------------------------------
+  // 4. Quick Search Shortcut (Cmd+K / Ctrl+K & Clickable Pill)
+  // ----------------------------------------------------------
+  const promptInput = document.getElementById("prompt-input");
+  const promptForm = document.getElementById("prompt-form");
+  const shortcutPill = document.querySelector(".shortcut-pill");
+
+  function focusPrompt() {
+    if (promptInput) {
+      promptInput.focus();
+      promptInput.scrollIntoView({ behavior: "smooth", block: "center" });
+      if (promptForm) {
+        promptForm.style.transition = "box-shadow 0.3s ease, border-color 0.3s ease";
+        promptForm.style.boxShadow = "0 0 0 3px rgba(255, 106, 0, 0.4)";
+        promptForm.style.borderColor = "#ff6a00";
+        setTimeout(() => {
+          promptForm.style.boxShadow = "";
+          promptForm.style.borderColor = "";
+        }, 1200);
+      }
+      showToast("Quick Edit (⌘K) focused");
+    }
+  }
+
+  document.addEventListener("keydown", (e) => {
+    if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+      e.preventDefault();
+      focusPrompt();
+    }
+  });
+
+  if (shortcutPill) {
+    shortcutPill.addEventListener("click", () => {
+      focusPrompt();
+    });
+  }
+
+  // ----------------------------------------------------------
+  // 5. Mobile Navigation Toggle
+  // ----------------------------------------------------------
   const mobileToggle = document.getElementById("mobile-toggle");
   const navLinks = document.getElementById("nav-links");
 
@@ -38,7 +130,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // 3. Smooth scrolling for internal navigation links
+  // ----------------------------------------------------------
+  // 6. Smooth Scrolling for Anchor Links
+  // ----------------------------------------------------------
   const links = document.querySelectorAll('a[href^="#"]');
   links.forEach((link) => {
     link.addEventListener("click", (e) => {
@@ -56,7 +150,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // 4. Interactive Sidebar Tasks Switching
+  // ----------------------------------------------------------
+  // 7. Interactive Sidebar Tasks Switching
+  // ----------------------------------------------------------
   const taskItems = document.querySelectorAll("#task-list li");
   const currentTaskTitle = document.getElementById("current-task-title");
   const editorOutput = document.getElementById("editor-output");
@@ -105,11 +201,97 @@ document.addEventListener("DOMContentLoaded", () => {
             }, 150);
           }
         }
+        showToast(`Switched to: ${taskDetails[taskKey].title}`);
       }
     });
   });
 
-  // 5. Interactive Prompt Form Simulation
+  // ----------------------------------------------------------
+  // 8. Interactive File Diff Switcher & Copy Snippet
+  // ----------------------------------------------------------
+  const fileChanges = document.querySelectorAll(".file-change");
+  const diffTitle = document.getElementById("diff-title");
+  const diffCode = document.getElementById("diff-code");
+  const diffCopyBtn = document.getElementById("diff-copy-btn");
+
+  const diffSnippets = {
+    page: {
+      title: "app/page.tsx (Diff)",
+      code: `<span class="diff-del">- export default function OldHome() {</span>
+<span class="diff-add">+ export default async function Page() {</span>
+<span class="diff-add">+   const session = await auth.getSession();</span>
+<span class="diff-ctx">    return &lt;AcmeLanding session={session} /&gt;;</span>
+<span class="diff-ctx">  }</span>`,
+      raw: `export default async function Page() {
+  const session = await auth.getSession();
+  return <AcmeLanding session={session} />;
+}`
+    },
+    globals: {
+      title: "app/globals.css (Diff)",
+      code: `<span class="diff-del">- :root { color-scheme: dark; }</span>
+<span class="diff-add">+ :root { --font-sans: 'Geist', sans-serif; }</span>
+<span class="diff-add">+ html.dark { color-scheme: dark; --bg: #14120b; }</span>
+<span class="diff-ctx">  body { background: var(--bg); color: #fff; }</span>`,
+      raw: `:root { --font-sans: 'Geist', sans-serif; }
+html.dark { color-scheme: dark; --bg: #14120b; }
+body { background: var(--bg); color: #fff; }`
+    }
+  };
+
+  fileChanges.forEach((fc) => {
+    fc.addEventListener("click", () => {
+      fileChanges.forEach((item) => item.classList.remove("active"));
+      fc.classList.add("active");
+
+      const fileKey = fc.getAttribute("data-file") || "page";
+      if (diffSnippets[fileKey]) {
+        if (diffTitle) diffTitle.textContent = diffSnippets[fileKey].title;
+        if (diffCode) diffCode.innerHTML = `<code>${diffSnippets[fileKey].code}</code>`;
+        showToast(`Viewing ${diffSnippets[fileKey].title}`);
+      }
+    });
+  });
+
+  if (diffCopyBtn) {
+    diffCopyBtn.addEventListener("click", () => {
+      const activeFile = document.querySelector(".file-change.active");
+      const fileKey = activeFile?.getAttribute("data-file") || "page";
+      const snippet = diffSnippets[fileKey]?.raw || "";
+
+      if (navigator.clipboard && snippet) {
+        navigator.clipboard.writeText(snippet).then(() => {
+          const span = diffCopyBtn.querySelector("span");
+          if (span) span.textContent = "Copied!";
+          showToast("Code diff copied to clipboard!");
+          setTimeout(() => {
+            if (span) span.textContent = "Copy";
+          }, 2000);
+        });
+      }
+    });
+  }
+
+  // ----------------------------------------------------------
+  // 9. Quick Prompt Suggestion Chips
+  // ----------------------------------------------------------
+  const promptChips = document.querySelectorAll(".prompt-chip");
+  promptChips.forEach((chip) => {
+    chip.addEventListener("click", () => {
+      const promptText = chip.getAttribute("data-prompt");
+      if (promptInput && promptText) {
+        promptInput.value = promptText;
+        promptInput.focus();
+        if (promptForm) {
+          promptForm.dispatchEvent(new Event("submit"));
+        }
+      }
+    });
+  });
+
+  // ----------------------------------------------------------
+  // 10. Interactive Prompt Form Simulation
+  // ----------------------------------------------------------
   if (promptForm && promptInput) {
     promptForm.addEventListener("submit", (e) => {
       e.preventDefault();
@@ -119,7 +301,11 @@ document.addEventListener("DOMContentLoaded", () => {
       if (editorOutput) {
         const p = editorOutput.querySelector("p");
         if (p) {
-          p.textContent = `Processing instruction: "${val}"... Done. Updated codebase with precision.`;
+          p.textContent = `✦ Agent thinking... analyzing repository context for "${val}"`;
+          setTimeout(() => {
+            p.textContent = `Applied changes for "${val}". Codebase indexed and all 14 integration tests passing.`;
+            showToast("Agent completed instruction!");
+          }, 600);
         }
       }
       promptInput.value = "";
